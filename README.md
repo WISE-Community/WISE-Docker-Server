@@ -3,8 +3,9 @@ WISE can be set up to run using Docker. We've tested this Ubuntu 22.04, but othe
 
 # Installation
 
-1. [Install Docker Engine and Docker Compose](https://docs.docker.com/engine/install/)
-2. Start services ```$ docker-compose up```
+1. Run setup script and follow prompts ```$ sh setup.sh```
+2. [Install Docker Engine and Docker Compose](https://docs.docker.com/engine/install/)
+3. Start services ```$ docker-compose up```
 
 
 # Updating with WISE releases

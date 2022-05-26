@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  wise-redis-server:
+    image: redis:7
+    container_name: wise-redis-server
+    restart: always 
+
+  wise-mysql-server:
+    image: mysql:8
+    container_name: wise-mysql-server
+    environment:
+      - MYSQL_ROOT_PASSWORD=iamroot
+      - MYSQL_DATABASE=wise_database
+      - MYSQL_USER=wiseuser
+      - MYSQL_PASSWORD=wisepass
+    restart: always 
+    volumes:
+      - './docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d'
+      - './data:/var/lib/mysql'
+
+  wise-api-server:
+    image: wiseberkeley/wise-api-server:latest
+    container_name: wise-api-server
+    depends_on:
+      - wise-redis-server
+      - wise-mysql-server
+    ports:
+      - '8080:8080'
+    restart: always 
+    volumes:
+      - '${PWD}/curriculum:/curriculum'
+      - '${PWD}/projectIcons:/projectIcons'
+      - '${PWD}/studentuploads:/studentuploads'
+      - '${PWD}/wise-api-server/application.properties:/application.properties'
+
+  wise-client-server:
+    image: wiseberkeley/wise-client-server:latest
+    container_name: wise-client-server
+    depends_on:
+      - wise-api-server
+    ports:
+      - '81:80'
+    restart: always 
+    volumes:
+      - '${PWD}/wise-client-server/nginx/conf.d:/etc/nginx/conf.d'
+
+  wise-nginx-server:
+    image: nginx:1.20
+    container_name: wise-nginx-server
+    depends_on:
+      - wise-client-server
+    ports:
+      - '80:80'
+    restart: always 
+    volumes:
+      - '${PWD}/nginx/conf.d:/etc/nginx/conf.d'
+      - '${PWD}/curriculum:/usr/share/nginx/html/curriculum'
+      - '${PWD}/projectIcons:/usr/share/nginx/html/projectIcons'
+      - '${PWD}/studentuploads:/usr/share/nginx/html/studentuploads'
