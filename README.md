@@ -1,5 +1,14 @@
 # Introduction
-WISE can be set up to run using Docker. We've tested this Ubuntu 22.04, but other flavors of Linux should also work.
+WISE can be set up to run using Docker. We've tested this on the following Linux servers:
+- Ubuntu (22.04, 20.04, 18.04)
+- Debian
+- CentOS
+- RedHat (Use CentOS instructions to install Docker)
+
+Minimum recommended server specifications:
+- 4GB RAM for small user base
+- 20GB disk space
+
 
 # Installation
 
@@ -11,7 +20,9 @@ WISE can be set up to run using Docker. We've tested this Ubuntu 22.04, but othe
 5. Change directory ```$ cd WISE-Docker-Server```
 6. Run setup script and follow prompts ```WISE-Docker-Server$ sh setup.sh```
 7. Start services ```WISE-Docker-Server$ docker compose up```
-8. Open your browser and type in the address to your server. WISE should be running there
+8. Open your browser and type in the address to your server. WISE should be running there with default users (be sure to change the password once you log in)
+   - admin/pass
+   - preview/wise 
 
 # Updating with WISE releases
 
