@@ -40,7 +40,7 @@ services:
     depends_on:
       - wise-api-server
     ports:
-      - '81:80'
+      - '81:81'
     restart: always 
     volumes:
       - '${PWD}/wise-client-server/nginx/conf.d:/etc/nginx/conf.d'
