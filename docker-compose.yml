@@ -4,7 +4,7 @@ services:
   wise-redis-server:
     image: redis:7
     container_name: wise-redis-server
-    restart: always 
+    restart: always
 
   wise-mysql-server:
     image: mysql:8
@@ -14,7 +14,7 @@ services:
       - MYSQL_DATABASE=wise_database
       - MYSQL_USER=wiseuser
       - MYSQL_PASSWORD=wisepass
-    restart: always 
+    restart: always
     volumes:
       - './docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d'
       - './data:/var/lib/mysql'
@@ -27,7 +27,7 @@ services:
       - wise-mysql-server
     ports:
       - '8080:8080'
-    restart: always 
+    restart: always
     volumes:
       - '${PWD}/curriculum:/curriculum'
       - '${PWD}/projectIcons:/projectIcons'
@@ -41,7 +41,7 @@ services:
       - wise-api-server
     ports:
       - '81:81'
-    restart: always 
+    restart: always
     volumes:
       - '${PWD}/wise-client-server/nginx/conf.d:/etc/nginx/conf.d'
 
@@ -52,7 +52,7 @@ services:
       - wise-client-server
     ports:
       - '80:80'
-    restart: always 
+    restart: always
     volumes:
       - '${PWD}/nginx/conf.d:/etc/nginx/conf.d'
       - '${PWD}/curriculum:/usr/share/nginx/html/curriculum'
