@@ -1,17 +1,15 @@
 # Introduction
 WISE can be set up to run using Docker. We've tested this on the following Linux servers:
-- Ubuntu (22.04, 20.04, 18.04)
+- Ubuntu
 - Debian
 - CentOS
 - RedHat (Use CentOS instructions to install Docker)
 
 Minimum recommended server specifications:
-- 4GB RAM for small user base
+- 4GB RAM for small user base, 8GB RAM for large user base
 - 20GB disk space
 
-
 # Installation
-
 1. [Install Docker Engine and Docker Compose](https://docs.docker.com/engine/install/)
 2. To run Docker as a non-root user, add your user in the docker group 
    - Run command to add user to docker group ```$ sudo usermod -aG docker $USER```
@@ -24,7 +22,10 @@ Minimum recommended server specifications:
    - admin/pass
    - preview/wise 
 
-# Updating with WISE releases
+# Updating with new releases
+1. Stop Docker containers ```WISE-Docker-Server$ docker compose down```
+2. Pull changes ```WISE-Docker-Server$ docker compose pull```
+3. Start Docker containers ```WISE-Docker-Server$ docker compose up```
 
-1. Pull changes ```WISE-Docker-Server$ docker-compose pull```
-2. Restart services ```WISE-Docker-Server$ docker-compose restart [wise-api-server/wise-client-server]```
+# Troubleshooting
+1. If you are having trouble loading the WISE homepage, it may be because your server does not have HTTPS enabled, but your browser is trying to access the HTTPS URL. To get past this, remove the "s" from "https" in the URL.
