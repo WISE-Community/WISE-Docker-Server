@@ -94,3 +94,19 @@ Setting this value will enable Chat GPT features. You will need to generate your
 ```
 OPENAI_API_KEY=
 ```
+
+# Server Architecture
+### API (wise-api-server container)
+This contains the API code that handles requests from the client. Whenever the client makes a request to the API, the API performs processing and sends back a response. The API saves user data and unit data to the MySQL database. The API also saves the curriculum and student uploads to the file system.
+
+### Client (wise-client-server container)
+This contains the client code that gets run on the browser.
+
+### MySQL (wise-mysql-server container)
+This contains the database where the user data and unit data is stored.
+
+### Redis (wise-redis-server container)
+This contains the session database where the user session data is stored.
+
+### Nginx (wise-nginx-server container)
+This contains an http server that reads the curriculum content and student uploads from the file system and sends it to the client whenever client requests it.
