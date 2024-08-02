@@ -1,3 +1,15 @@
+[Introduction](#introduction)
+
+[Installation](#installation)
+
+[Updating with new releases](#updating-with-new-releases)
+
+[Troubleshooting](#troubleshooting)
+
+[Properties configuration](#properties-configuration)
+
+[Server architecture](#server-architecture)
+
 # Introduction
 WISE can be set up to run using Docker. We've tested this on the following Linux servers:
 - Ubuntu
@@ -95,7 +107,7 @@ Setting this value will enable the AI Chat item that lets students chat with Cha
 OPENAI_API_KEY=
 ```
 
-# Server Architecture
+# Server architecture
 ### API (wise-api-server container)
 This contains the API code that handles requests from the client. Whenever the client makes a request to the API, the API performs processing and sends back a response. The API saves user data and unit data to the MySQL database. The API also saves the curriculum and student uploads to the file system.
 
