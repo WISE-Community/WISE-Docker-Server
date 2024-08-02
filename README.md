@@ -34,12 +34,12 @@ Minimum recommended server specifications:
 You can edit the ```/WISE-Docker-Server/wise-api-server/application.properties``` file to enable certain features on the server.
 
 
-Setting this value will enable Google Analytics. You will need to generate your own Google Analytics id.
+Setting this value will enable Google Analytics. This keeps track of data on your users such as where they are from and what type of device they are using. You will need to generate your own Google Analytics id on the [Google Analytics](https://marketingplatform.google.com/about/analytics/) site.
 ```
 google_analytics_id=
 ```
 
-Setting these values will enable reCAPTCHA for users when they sign in.
+Setting these values will enable reCAPTCHA on the server. This helps protect against bots that try to interact with the server. You can generate these keys on the [reCAPTCHA](https://developers.google.com/recaptcha/) site.
 ```
 recaptcha_public_key=
 recaptcha_private_key=
@@ -60,14 +60,14 @@ uber_admin=
 portalemailaddress=
 ```
 
-Setting these values will enable users to sign in with a Google account. You will need to generate your own Google client id and client secret.
+Setting these values will enable users to sign in with a Google account. It also allows users to integrate WISE with Google Classroom. You will need to generate your own Google client id and client secret by following the directions [here](https://developers.google.com/identity/sign-in/web/sign-in).
 ```
 google.clientId=
 google.clientSecret=
 google.redirectUri=
 ```
 
-Setting these values will enable users to sign in with a Microsoft account. You will need to generate your own Microsoft values.
+Setting these values will enable users to sign in with a Microsoft account. You will need to generate your own Microsoft values using the instructions [here](https://learn.microsoft.com/en-us/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-azure-active-directory).
 ```
 microsoft.accessTokenUri=
 microsoft.clientId=
@@ -78,19 +78,19 @@ microsoft.userAuthorizationUri=
 microsoft.redirectUri=
 ```
 
-Setting these values will enable the Discourse forum where users can post messages. You will need to start up your own Discourse server and obtain the values from it.
+Setting these values will enable the Discourse forum where users can post messages. You will need to start up your own Discourse server and obtain the values from it using the instructions [here](https://github.com/discourse/discourse/blob/main/docs/INSTALL.md).
 ```
 discourse_url=
 discourse_sso_secret_key=
 ```
 
-Setting these values will enable the speech to text feature.
+Setting these values will enable the speech to text feature that allows students to speak into an Open Response item and have their words automatically converted to text. You will need to set up the transcribe service on AWS using the instructions [here](https://docs.aws.amazon.com/transcribe/latest/dg/streaming-setting-up.html).
 ```
 speech-to-text.aws.region=
 speech-to-text.aws.identity-pool-id=
 ```
 
-Setting this value will enable Chat GPT features. You will need to generate your own Open AI API key.
+Setting this value will enable the AI Chat item that lets students chat with ChatGPT. You will need to generate your own Open AI API key using the instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 ```
 OPENAI_API_KEY=
 ```
