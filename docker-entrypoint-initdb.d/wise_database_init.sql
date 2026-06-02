@@ -90,6 +90,33 @@ create table annotations (
     primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+create table chatbot_chats (
+    id bigint not null auto_increment,
+    runId bigint not null,
+    workgroupId bigint not null,
+    title varchar(255),
+    createdAt datetime not null,
+    lastUpdated datetime not null,
+    isDeleted bit not null default 0,
+    index chatbotChatsRunIdIndex (runId),
+    index chatbotChatsWorkgroupIdIndex (workgroupId),
+    constraint chatbotChatsRunIdFK foreign key (runId) references runs (id),
+    constraint chatbotChatsWorkgroupIdFK foreign key (workgroupId) references workgroups (id),
+    primary key (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table chatbot_messages (
+    id bigint not null auto_increment,
+    chatId bigint not null,
+    role varchar(20) not null,
+    content text not null,
+    timestamp datetime,
+    nodeId varchar(30) not null,
+    index chatbotMessagesChatIdIndex (chatId),
+    constraint chatbotMessagesChatIdFK foreign key (chatId) references chatbot_chats (id) on delete cascade,
+    primary key (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 create table events (
     id integer not null auto_increment,
     category varchar(255) not null,
@@ -498,6 +525,7 @@ create table user_details (
     email_address varchar(255),
     enabled bit not null,
     googleUserId varchar(255) null,
+    microsoftUserId varchar(255) null,
     reset_password_verification_code_request_time datetime null,
     reset_password_verification_code varchar(255) null,
     recent_failed_verification_code_attempt_time datetime null,
@@ -510,7 +538,6 @@ create table user_details (
     reset_password_request_time datetime,
     username varchar(255) not null,
     OPTLOCK integer,
-    microsoftUserId varchar(255) default null,
     constraint user_detailsUsernameUnique unique (username),
     primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -549,7 +576,7 @@ CREATE TABLE `user_tags` (
     id bigint not null auto_increment,
     users_fk bigint not null,
     text varchar(100) not null,
-    color varchar(25) default null,
+    color varchar(25) DEFAULT null,
     constraint user_tags_users_fk foreign key (users_fk) references users (id),
     primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
